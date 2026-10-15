@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <style>
-/* Layout: a chipped-enamel reading slate bolted between two riveted rust rails, standing on settled red sand; the opening frame is seen through the visor. */
+/* Layout: chipped-enamel reading slates bolted between two riveted rust rails, standing on settled red sand; each part of the book opens with its own frame seen through the visor. */
 :root{
   --ground:#b14b2f; --ground-2:#7e3119;
   --rust:#5a2712; --rust-2:#9a4a22; --rust-3:#cf6c3a;
@@ -145,7 +145,7 @@ body{
   padding-right:max(16px, env(safe-area-inset-right,0px));
   font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
 }
-.name{ font-weight:500; color:var(--paint); white-space:nowrap }
+.name{ font-weight:500; color:var(--paint); white-space:nowrap; text-decoration:none }
 .status{ display:flex; align-items:center; gap:8px; color:var(--paint-2); white-space:nowrap }
 .led{
   width:9px; height:9px; border-radius:50%; background:var(--amber); flex:none;
@@ -167,7 +167,7 @@ body{
 .btn-theme:hover{ border-color:var(--amber) }
 @media (max-width:560px){ .name, .status .k, .read .k{ display:none } }
 
-/* ---------- hero ---------- */
+/* ---------- picture bands ---------- */
 .hero{ position:relative; background:var(--metal); overflow:hidden }
 .hero img{ display:block; width:100%; max-width:100%; aspect-ratio:16/9; max-height:72vh; object-fit:cover; object-position:50% 40% }
 .hero::after{
@@ -175,6 +175,8 @@ body{
   box-shadow:inset 0 0 120px 10px rgba(0,0,0,.45);
   background:linear-gradient(to bottom, transparent 78%, color-mix(in srgb, var(--metal) 75%, transparent));
 }
+.hero-ch{ border-top:4px solid var(--metal); border-bottom:4px solid var(--metal); box-shadow:0 14px 30px -14px var(--shadow) }
+.hero-ch img{ max-height:60vh; object-position:50% 45% }
 
 /* ---------- nameplate ---------- */
 .plate{
@@ -210,22 +212,24 @@ body{
   -webkit-mask-image:var(--chips-fine); -webkit-mask-size:160px 160px;
   mask-image:var(--chips-fine); mask-size:160px 160px;
 }
-.spec{ margin:0; font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-2); border-left:2px solid var(--line); padding-left:16px; min-width:0 }
-.spec .cap{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--rust-2); margin:0 0 10px }
-.spec dl{ margin:0; display:grid; gap:6px }
-.spec dl div{ display:flex; justify-content:space-between; gap:22px }
-.spec dt{ margin:0; text-transform:uppercase; letter-spacing:.14em; font-size:10px; color:var(--ink-3); align-self:center }
-.spec dd{ margin:0; font-variant-numeric:tabular-nums; color:var(--ink); font-weight:500; white-space:nowrap }
-@media (max-width:700px){ .plate-in{ grid-template-columns:1fr; gap:22px } .spec{ border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:14px } }
+.toc{ margin:0; font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-2); border-left:2px solid var(--line); padding-left:16px; min-width:0 }
+.toc .cap{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--rust-2); margin:0 0 10px }
+.toc ol{ list-style:none; margin:0; padding:0; display:grid; gap:8px }
+.toc a{ display:flex; justify-content:space-between; gap:22px; color:inherit; text-decoration:none; border-bottom:1px solid transparent }
+.toc a:hover{ border-bottom-color:var(--rust-2) }
+.toc .n{ text-transform:uppercase; letter-spacing:.14em; font-size:10px; color:var(--ink-3); align-self:center; white-space:nowrap }
+.toc .t{ font-family:var(--font-body); font-size:14px; letter-spacing:0; color:var(--ink); font-weight:600; text-align:right }
+@media (max-width:700px){ .plate-in{ grid-template-columns:1fr; gap:22px } .toc{ border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:14px } }
 
-/* ---------- reading slate ---------- */
+/* ---------- reading slates ---------- */
 .slate-wrap{
   padding-left:max(16px, env(safe-area-inset-left,0px));
   padding-right:max(16px, env(safe-area-inset-right,0px));
-  padding-block:44px 28px;
+  padding-block:44px 36px;
 }
 .slate{
   position:relative; max-width:760px; margin:0 auto; overflow:hidden;
+  scroll-margin-top:calc(var(--bar-h) + 20px);
   background:var(--grain-soft), var(--slate); color:var(--ink);
   border:1px solid var(--metal-deep); border-radius:4px;
   box-shadow:0 30px 50px -24px var(--shadow), inset 0 0 0 1px color-mix(in srgb, var(--paint) 50%, transparent);
@@ -266,6 +270,14 @@ body{
   color:var(--ink-2); border:1.5px solid var(--ink-2); border-radius:2px; padding:5px 10px 4px; margin:6px 0 0;
   transform:rotate(-1.5deg);
 }
+.vis{ /* readout on the edge of the visor */
+  margin:14px 0 0; padding:12px 0 0; border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:8px 26px;
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.06em;
+}
+.vis > div{ display:flex; gap:10px; align-items:baseline; min-width:0 }
+.vis dt{ margin:0; text-transform:uppercase; letter-spacing:.14em; font-size:10px; color:var(--ink-3); white-space:nowrap }
+.vis dd{ margin:0; font-variant-numeric:tabular-nums; color:var(--rust-2); font-weight:500; white-space:nowrap }
 .prose{ font-size:clamp(1.0625rem, 1rem + .35vw, 1.1875rem); line-height:1.68; color:var(--ink); hyphens:auto; -webkit-hyphens:auto; text-wrap:pretty }
 .prose p{ margin:0 0 .5em }
 .prose p + p{ text-indent:1.6em }
@@ -274,7 +286,9 @@ body{
 .ch-end{ margin-top:52px }
 .stripe{ height:6px; background:repeating-linear-gradient(135deg, var(--suit) 0 14px, var(--paint-2) 14px 28px); opacity:.85 }
 .ch-end-row{ display:flex; justify-content:space-between; gap:12px 20px; flex-wrap:wrap; padding-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2) }
-.ch-end-row span{ white-space:nowrap }
+.ch-end-row span, .ch-end-row a{ white-space:nowrap }
+.ch-end-row a{ color:var(--rust-2); text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--rust-2) 45%, transparent) }
+.ch-end-row a:hover{ border-bottom-color:var(--rust-2) }
 
 /* ---------- colophon ---------- */
 .colophon{
@@ -301,7 +315,7 @@ body{
 <div class="page" id="top">
   <header class="bar">
     <div class="bar-in">
-      <span class="name">MOZAR Protocol</span>
+      <a class="name" href="#top">MOZAR Protocol</a>
       <span class="status"><span class="led" aria-hidden="true"></span><span class="k">Stan</span></span>
       <span class="read"><span class="k">Odczyt</span><span class="gauge" aria-hidden="true"><i id="gauge-fill"></i></span><span id="pct" aria-live="off">0%</span></span>
       <button class="btn-theme" id="theme-btn" type="button" aria-label="Przełącz tryb dzień/zmierzch">Tryb · <b id="theme-val">Dzień</b></button>
@@ -309,7 +323,7 @@ body{
   </header>
 
   <section class="hero">
-    <img src="hero.jpg" alt="Eve klęczy w czerwonym pyle obok przewróconej jednostki gąsienicowej z wygiętym ramieniem; w tle lądownik i nisko stojące słońce." decoding="async">
+    <img src="prolog.jpg" alt="Eve siedzi w czerwonym pyle obok otwartej kapsuły ratunkowej; w tle tlący się kadłub i smuga dymu nad horyzontem." decoding="async">
   </section>
 
   <section class="plate">
@@ -318,59 +332,136 @@ body{
         <p class="eyebrow">Powieść · Norbert Mazur</p>
         <h1 class="book">MOZAR Protocol</h1>
       </div>
-      <section class="spec" aria-label="Odczyt na krawędzi wizjera">
-        <p class="cap">Odczyt na krawędzi wizjera</p>
-        <dl>
-          <div><dt>Tlen</dt><dd>4 h 11 min</dd></div>
-          <div><dt>Lądownik</dt><dd>300 kroków</dd></div>
-          <div><dt>Korpus jednostki</dt><dd>11 kroków</dd></div>
-          <div><dt>Dzień</dt><dd>0</dd></div>
-        </dl>
-      </section>
+      <nav class="toc" aria-label="Spis treści">
+        <p class="cap">Spis treści</p>
+        <ol>
+          <li><a href="#prolog"><span class="n">Prolog</span><span class="t">Mars, dzień 0</span></a></li>
+          <li><a href="#rozdzial-1"><span class="n">Rozdział 1</span><span class="t">Sto czterdzieści kroków</span></a></li>
+        </ol>
+      </nav>
     </div>
   </section>
 
-  <div class="slate-wrap">
-    <article class="slate" id="rozdzial-1" lang="pl">
-      <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
-      <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
-      <div class="dust" aria-hidden="true"></div>
+  <div id="book">
+    <div class="slate-wrap">
+      <article class="slate" id="prolog" lang="pl">
+        <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+        <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+        <div class="dust" aria-hidden="true"></div>
 
-      <header class="ch-head">
-        <p class="ch-label">Rozdział 1</p>
-        <h2 class="ch-title">Sto czterdzieści kroków</h2>
-        <p class="day">Dzień 0</p>
-      </header>
+        <header class="ch-head">
+          <p class="ch-label">Prolog</p>
+          <h2 class="ch-title">Mars, dzień 0</h2>
+          <dl class="vis" aria-label="Odczyt na krawędzi wizjera">
+            <div><dt>Grawitacja</dt><dd>ok. 1/3</dd></div>
+            <div><dt>Kadłub</dt><dd>150 m</dd></div>
+            <div><dt>Światło</dt><dd>ok. 6 h</dd></div>
+            <div><dt>Żebra</dt><dd>1, może 2</dd></div>
+          </dl>
+        </header>
 
-      <div class="prose" id="prose">
-        <p>Sto czterdzieści kroków.</p>
-        <p>Sto sześćdziesiąt.</p>
-        <p>Przy stu osiemdziesięciu zatrzymała się, bo coś leżało w pyle na lewo od trasy, jakieś sto metrów w bok, i to coś nie było kamieniem.</p>
-        <p>Ruszyła w tamtą stronę.</p>
-        <p>Jednostka leżała na boku, na końcu płytkiej bruzdy, którą sama wyorała w gruncie. Gąsienice, dwa ramiona robocze, korpus długi na jedenaście jej kroków, nawet na boku wyższy od niej. Obudowa porysowana, jedno ramię wygięte pod kątem, który nie wyglądał na przewidziany przez konstruktora. Wskaźnik stanu na korpusie mrugał bardzo powoli, w rytmie, który oznaczał coś, czego Eve nie umiała nazwać, ale co rozpoznała natychmiast jako jeszcze żywe.</p>
-        <p>Podręcznik, którego nie pamiętała, mówił w takiej sytuacji jedno: najpierw zabezpiecz zasoby krytyczne. Tlen. Wodę. Schronienie.</p>
-        <p>Eve oparła się plecami o obudowę i sprawdziła odczyt na krawędzi wizjera. Cztery godziny jedenaście minut tlenu. Lądownik stał trzysta kroków stąd. W jakim jest stanie, nie wiedziała. Ile potrwa naprawa, też nie.</p>
-        <p>Była tylko jedna bezpieczna opcja.</p>
-        <p>Jednostka leżała obok, z jednym ramieniem wygiętym i wskaźnikiem stanu mrugającym coraz wolniej. O trzysta kroków bliżej.</p>
-        <p>Eve spojrzała w stronę kadłuba, potem na zatrzask obudowy.</p>
-        <p>Nie przeszło jej przez myśl, czy maszyna będzie jej potrzebna. Nie sprawdziła, czy jest bezpieczna. Koszt już policzyła, jak wszystko, odkąd się obudziła.</p>
-        <p>Klęka.</p>
-        <p>Dlaczego? Ta odpowiedź nie przyjdzie do niej jeszcze przez rok.</p>
-        <p>Zdejmuje rękawicę zewnętrzną, żeby uwolnić zatrzask obudowy.</p>
-        <p class="final">I zaczyna budować.</p>
-      </div>
-
-      <footer class="ch-end">
-        <div class="stripe" aria-hidden="true"></div>
-        <div class="ch-end-row">
-          <span>Koniec rozdziału 1</span>
-          <span class="next">Rozdział 2 · wkrótce</span>
+        <div class="prose">
+          <p>Chłód przyszedł pierwszy.</p>
+          <p>Nie ból, nie strach, nie zdziwienie — chłód, wchodzący przez tkaninę kombinezonu w miejscach, gdzie przylegał najciaśniej: pod łopatkami, na wewnętrznej stronie ud, wzdłuż kręgosłupa. Ciało zarejestrowało go, zanim cokolwiek zdążyło ten fakt zinterpretować.</p>
+          <p>Potem niebo.</p>
+          <p>Koloru rdzy, za duże, za płaskie. Nie miała z czym go porównać, a mimo to wiedziała, że jest nie takie, jakie powinno być. Skądś. Nie z pamięci — pamięci nie było — tylko z czegoś głębiej, z jakiegoś osadu w ciele, który najwyraźniej pamiętał więcej niż ona sama.</p>
+          <p>Usiadła, bo ciało kazało jej usiąść, zanim umysł zdążył zapytać dlaczego.</p>
+          <p>Siedziała w pyle, o krok od kapsuły ratunkowej. Właz był otwarty. Nie pamiętała, żeby z niej wychodziła.</p>
+          <p>Kombinezon trzeszczał przy każdym ruchu, sztywny od zimna, pokryty warstwą drobnego pyłu, który przy najlżejszym drgnieniu unosił się i opadał z nieprzyzwoitą powolnością.</p>
+          <p>Zbyt wolno.</p>
+          <p>Coś w niej odnotowało również to.</p>
+          <p>Grawitacja niższa. Około jednej trzeciej.</p>
+          <p>Skąd to wiedziała, nie miała pojęcia.</p>
+          <p>Imię przyszło samo, gdzieś ze środka, bez wysiłku, jak oddech.</p>
+          <p>Eve.</p>
+          <p>Na wewnętrznej stronie manszety, pod pyłem, widniały te same trzy litery. Nie rozwijały się w żaden skrót. W manifeście, którego jeszcze nie znalazła, wpisano je w polu „imię”.</p>
+          <p>Czekała, aż przyjdzie reszta. Nazwisko. Twarz matki. Nazwa ulicy. Cokolwiek.</p>
+          <p>Nic więcej.</p>
+          <p>Żadnej twarzy. Żadnego miasta. Żadnego powodu.</p>
+          <p>Poruszyła palcami w rękawicach, jeden po drugim, potem nogami — ciało reagowało normalnie, bez opóźnień, bez bólu poza tępym uciskiem po prawej stronie żeber, który przy głębszym wdechu zamieniał się w ostrze.</p>
+          <p>Pęknięcie, może dwa. Nic, co uniemożliwiałoby chodzenie.</p>
+          <p>Wstała i odwróciła głowę.</p>
+          <p>Za plecami, jakieś sto pięćdziesiąt metrów dalej, widać było zarys kadłuba.</p>
+          <p>Nie płonął — na to było za mało tlenu — ale coś w środku wciąż się tliło, wypuszczając w górę pasmo brudnego dymu, które wiatr rozmazywał w poprzek horyzontu jak niedbałe pociągnięcie pędzlem.</p>
+          <p>Zwróciła wzrok z powrotem na kapsułę. Jej osłona termiczna leżała kilkanaście metrów dalej, oderwana czysto, jakby ktoś ją zdjął, a nie wyrwał. Sądząc po jej wyglądzie, miała chyba szczęście.</p>
+          <p>Ale na szczęściu nie polegała. Coś w niej już liczyło.</p>
+          <p>Godziny tlenu — odczyt na wewnętrznej krawędzi wizjera, cyfry drobne, pomarańczowe, spadające. Litry wody. Kąt padania słońca, które stało nisko. Odległość do kadłuba, wyrażona w krokach, a nie w metrach, bo kroki były jednostką, którą mogła zweryfikować.</p>
+          <p>Liczyła, zanim zdążyła się przestraszyć.</p>
+          <p>To był najdziwniejszy fakt tego poranka — dziwniejszy niż niebo, dziwniejszy niż brak pamięci. Jakaś część jej umysłu pracowała od dawna, nie czekając, aż reszta się obudzi.</p>
+          <p>Nie wiedziała, co stało się na Ziemi.</p>
+          <p>Nie wiedziała, że dziewiętnaście lat wcześniej kilkoro ludzi postanowiło zbudować coś, czego nikt nie zdoła zabić jednym ciosem. Nie wiedziała, że kobieta o imieniu Berni zapisywała rzeczy, których nie rozumiała, przez jedenaście lat, i że jeden z tych zapisów przetrwał, bo był zbyt mały, żeby ktokolwiek uznał go za wart uwagi.</p>
+          <p>Nie wiedziała, co robi na Marsie — choć wiedziała, że to Mars, tak samo pewnie i tak samo bezpodstawnie jak wiedziała własne imię.</p>
+          <p>Wiedziała jedno, głęboko, bez pytania, bez potrzeby uzasadnienia: że ma jedną szansę i nie wolno jej popełnić błędu.</p>
+          <p>Nie było w tej myśli paniki. Nie było dramatu. Była w niej ta sama rzeczowość, z jaką liczyła godziny tlenu — jakby ktoś kiedyś, dawno, powiedział jej to spokojnym głosem, a ona zapamiętała to ciałem, kiedy wszystko inne zdążyło się już zetrzeć.</p>
+          <p>Pierwszy krok zabolał. Drugi mniej. Przy dziesiątym ustaliła rytm, który pozwalał oddychać płytko, nie drażniąc żeber.</p>
+          <p>Słońce, małe i blade, stało nad horyzontem po jej lewej. Miała jakieś sześć godzin światła — znowu wiedziała to bez liczenia — i zero powodów, żeby iść w którąkolwiek stronę.</p>
+          <p class="final">Poszła w stronę kadłuba.</p>
         </div>
-      </footer>
 
-      <div class="sand sand-bl" aria-hidden="true"></div>
-      <div class="sand sand-br" aria-hidden="true"></div>
-    </article>
+        <footer class="ch-end">
+          <div class="stripe" aria-hidden="true"></div>
+          <div class="ch-end-row">
+            <span>Koniec prologu</span>
+            <a href="#rozdzial-1">Dalej: Rozdział 1 ↓</a>
+          </div>
+        </footer>
+
+        <div class="sand sand-bl" aria-hidden="true"></div>
+        <div class="sand sand-br" aria-hidden="true"></div>
+      </article>
+    </div>
+
+    <section class="hero hero-ch">
+      <img src="rozdzial-1.jpg" alt="Eve klęczy w czerwonym pyle przy gąsienicowej jednostce roboczej z dwoma ramionami; w tle lądownik i nisko stojące słońce." decoding="async">
+    </section>
+
+    <div class="slate-wrap">
+      <article class="slate" id="rozdzial-1" lang="pl">
+        <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+        <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+        <div class="dust" aria-hidden="true"></div>
+
+        <header class="ch-head">
+          <p class="ch-label">Rozdział 1</p>
+          <h2 class="ch-title">Sto czterdzieści kroków</h2>
+          <p class="day">Dzień 0</p>
+          <dl class="vis" aria-label="Odczyt na krawędzi wizjera">
+            <div><dt>Tlen</dt><dd>4 h 11 min</dd></div>
+            <div><dt>Lądownik</dt><dd>300 kroków</dd></div>
+            <div><dt>Korpus jednostki</dt><dd>11 kroków</dd></div>
+          </dl>
+        </header>
+
+        <div class="prose">
+          <p>Sto czterdzieści kroków.</p>
+          <p>Sto sześćdziesiąt.</p>
+          <p>Przy stu osiemdziesięciu zatrzymała się, bo coś leżało w pyle na lewo od trasy, jakieś sto metrów w bok, i to coś nie było kamieniem.</p>
+          <p>Ruszyła w tamtą stronę.</p>
+          <p>Jednostka leżała na boku, na końcu płytkiej bruzdy, którą sama wyorała w gruncie. Gąsienice, dwa ramiona robocze, korpus długi na jedenaście jej kroków, nawet na boku wyższy od niej. Obudowa porysowana, jedno ramię wygięte pod kątem, który nie wyglądał na przewidziany przez konstruktora. Wskaźnik stanu na korpusie mrugał bardzo powoli, w rytmie, który oznaczał coś, czego Eve nie umiała nazwać, ale co rozpoznała natychmiast jako jeszcze żywe.</p>
+          <p>Podręcznik, którego nie pamiętała, mówił w takiej sytuacji jedno: najpierw zabezpiecz zasoby krytyczne. Tlen. Wodę. Schronienie.</p>
+          <p>Eve oparła się plecami o obudowę i sprawdziła odczyt na krawędzi wizjera. Cztery godziny jedenaście minut tlenu. Lądownik stał trzysta kroków stąd. W jakim jest stanie, nie wiedziała. Ile potrwa naprawa, też nie.</p>
+          <p>Była tylko jedna bezpieczna opcja.</p>
+          <p>Jednostka leżała obok, z jednym ramieniem wygiętym i wskaźnikiem stanu mrugającym coraz wolniej. O trzysta kroków bliżej.</p>
+          <p>Eve spojrzała w stronę kadłuba, potem na zatrzask obudowy.</p>
+          <p>Nie przeszło jej przez myśl, czy maszyna będzie jej potrzebna. Nie sprawdziła, czy jest bezpieczna. Koszt już policzyła, jak wszystko, odkąd się obudziła.</p>
+          <p>Klęka.</p>
+          <p>Dlaczego? Ta odpowiedź nie przyjdzie do niej jeszcze przez rok.</p>
+          <p>Zdejmuje rękawicę zewnętrzną, żeby uwolnić zatrzask obudowy.</p>
+          <p class="final">I zaczyna budować.</p>
+        </div>
+
+        <footer class="ch-end">
+          <div class="stripe" aria-hidden="true"></div>
+          <div class="ch-end-row">
+            <span>Koniec rozdziału 1</span>
+            <span>Rozdział 2 · wkrótce</span>
+          </div>
+        </footer>
+
+        <div class="sand sand-bl" aria-hidden="true"></div>
+        <div class="sand sand-br" aria-hidden="true"></div>
+      </article>
+    </div>
   </div>
 
   <footer class="colophon">
@@ -398,12 +489,12 @@ body{
   if (mq && mq.addEventListener) mq.addEventListener('change', label);
   label();
 
-  /* reading progress through the chapter */
-  var fill = document.getElementById('gauge-fill'), pct = document.getElementById('pct'), art = document.getElementById('rozdzial-1');
+  /* reading progress through the whole book */
+  var fill = document.getElementById('gauge-fill'), pct = document.getElementById('pct'), book = document.getElementById('book');
   var ticking = false;
   function update(){
     ticking = false;
-    var r = art.getBoundingClientRect(), top = r.top + window.scrollY, h = r.height || 1;
+    var r = book.getBoundingClientRect(), top = r.top + window.scrollY, h = r.height || 1;
     var p = (window.scrollY + window.innerHeight - top) / h;
     p = Math.max(0, Math.min(1, p));
     var n = Math.round(p * 100);
@@ -416,12 +507,14 @@ body{
   update();
 
   /* Polish typesetting: no single-letter words at line ends */
-  var walker = document.createTreeWalker(document.getElementById('prose'), NodeFilter.SHOW_TEXT, null);
-  var re = /(^|[\s(„"])([aAiIoOuUwWzZ])\s+(?=\S)/g, node;
-  while ((node = walker.nextNode())) {
-    var t = node.nodeValue, u = t.replace(re, '$1$2 ');
-    if (u !== t) node.nodeValue = u;
-  }
+  var re = /(^|[\s(„"])([aAiIoOuUwWzZ])\s+(?=\S)/g;
+  Array.prototype.forEach.call(document.querySelectorAll('.prose'), function(block){
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null), node;
+    while ((node = walker.nextNode())) {
+      var t = node.nodeValue, u = t.replace(re, '$1$2 ');
+      if (u !== t) node.nodeValue = u;
+    }
+  });
 })();
 </script>
 </body>
