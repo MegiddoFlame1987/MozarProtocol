@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="MOZAR Protocol, powieść Norberta Mazura. Rozdział 1: Sto czterdzieści kroków.">
+<meta name="color-scheme" content="light dark">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MOZAR Protocol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Layout: a chipped-enamel reading slate bolted between two riveted rust rails, standing on settled red sand; the opening frame is seen through the visor. */
+:root{
+  --ground:#b14b2f; --ground-2:#7e3119;
+  --rust:#5a2712; --rust-2:#9a4a22; --rust-3:#cf6c3a;
+  --metal:#2a211c; --metal-2:#4a3a31; --metal-hi:#8d7262; --metal-deep:#130c09;
+  --paint:#e9e0d0; --paint-2:#cdbea7;
+  --suit:#d8602a; --amber:#ffb648;
+  --slate:#efe6d6; --slate-2:#e3d7c3;
+  --ink:#2a1d16; --ink-2:#6b5244; --ink-3:#9b806d;
+  --line:rgba(42,29,22,.2);
+  --shadow:rgba(20,8,4,.55);
+  --font-display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --font-body:Literata,Georgia,"Times New Roman",serif;
+  --font-mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  --rail-w:76px; --bar-h:44px;
+  /* procedural textures: rust grain, chipped paint, oxide blotches, sand grains */
+  --grain-strong:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 .5 .5 0 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --grain-mid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .3 .3 .3 0 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --grain-soft:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .2 .2 .2 0 -.22'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --chips:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --chips-fine:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.06' numOctaves='2' seed='17' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --blotch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.03' numOctaves='4' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --dots-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .87 0 0 0 0 .47 0 0 0 0 .25 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 .55 .55 .55 .55 .55 .55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --dots-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' seed='29' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .15 0 0 0 0 .07 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='.55 .55 .55 .55 .55 .55 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#3b1b12; --ground-2:#22100a;
+    --rust:#331509; --rust-2:#6f3317; --rust-3:#a4512a;
+    --metal:#151010; --metal-2:#2c221d; --metal-hi:#6a5244; --metal-deep:#070403;
+    --paint:#b8a992; --paint-2:#8f806b;
+    --suit:#bf5425; --amber:#ffb648;
+    --slate:#2b221d; --slate-2:#241c18;
+    --ink:#eadcc8; --ink-2:#b89d86; --ink-3:#8a7260;
+    --line:rgba(234,220,200,.18);
+    --shadow:rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#3b1b12; --ground-2:#22100a;
+  --rust:#331509; --rust-2:#6f3317; --rust-3:#a4512a;
+  --metal:#151010; --metal-2:#2c221d; --metal-hi:#6a5244; --metal-deep:#070403;
+  --paint:#b8a992; --paint-2:#8f806b;
+  --suit:#bf5425; --amber:#ffb648;
+  --slate:#2b221d; --slate-2:#241c18;
+  --ink:#eadcc8; --ink-2:#b89d86; --ink-3:#8a7260;
+  --line:rgba(234,220,200,.18);
+  --shadow:rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+@media (max-width:1100px){ :root{ --rail-w:44px } }
+@media (max-width:700px){ :root{ --rail-w:14px; --bar-h:40px } }
+
+html{ scroll-behavior:smooth }
+body{
+  margin:0;
+  background:
+    var(--dots-dark), var(--dots-light), var(--grain-mid),
+    radial-gradient(120% 50% at 50% 0%, rgba(255,176,120,.22), transparent 60%),
+    var(--ground);
+  color:var(--ink);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+}
+*,*::before,*::after{ box-sizing:border-box }
+:focus-visible{ outline:2px solid var(--amber); outline-offset:2px }
+
+/* ---------- rails ---------- */
+.rail{
+  position:fixed; top:0; bottom:0; z-index:30; pointer-events:none; overflow:hidden;
+  width:calc(var(--rail-w) + env(safe-area-inset-left,0px));
+  background:var(--grain-strong), linear-gradient(90deg, var(--rust) 0%, var(--rust-2) 38%, var(--rust-3) 58%, var(--rust-2) 78%, var(--rust) 100%);
+}
+.rail-l{ left:0; box-shadow:6px 0 26px -4px var(--shadow), inset -3px 0 0 var(--metal-deep) }
+.rail-r{ right:0; width:calc(var(--rail-w) + env(safe-area-inset-right,0px)); box-shadow:-6px 0 26px -4px var(--shadow), inset 3px 0 0 var(--metal-deep) }
+.rail::before{ /* oxide blotches */
+  content:""; position:absolute; inset:0; z-index:1; opacity:.9;
+  background:var(--grain-strong), var(--rust-3);
+  -webkit-mask-image:var(--blotch); -webkit-mask-size:240px 240px;
+  mask-image:var(--blotch); mask-size:240px 240px;
+}
+.rail .paint{ /* chipped enamel bands, one suit-orange stripe */
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(180deg, transparent 0 5%, var(--paint) 5% 29%, transparent 29% 34%, var(--suit) 34% 42%, transparent 42% 48%, var(--paint) 48% 76%, transparent 76%);
+  -webkit-mask-image:var(--chips); -webkit-mask-size:180px 180px;
+  mask-image:var(--chips); mask-size:180px 180px;
+}
+.rail::after{ /* grooves and edge light */
+  content:""; position:absolute; inset:0; z-index:3;
+  background:linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 18%, rgba(0,0,0,.28) 18% 19.5%, transparent 19.5% 80%, rgba(255,235,210,.14) 80% 81.5%, transparent 81.5%);
+}
+.rail .rivets{
+  position:absolute; inset:0; z-index:4;
+  background:radial-gradient(circle at 50% 50%, var(--metal-deep) 0 1.6px, var(--metal-hi) 1.9px 2.8px, var(--metal-deep) 3px 3.6px, transparent 3.9px) 0 10px / 100% 72px repeat-y;
+}
+.rail .drift{ /* settled sand at the foot of the rail */
+  position:absolute; left:-10%; right:-10%; bottom:0; z-index:5; height:min(34vh,320px);
+  background:
+    var(--dots-dark), var(--dots-light),
+    radial-gradient(130% 80% at 50% 100%, var(--ground) 0 35%, transparent 70%),
+    radial-gradient(90% 50% at 25% 100%, var(--rust-3) 0 20%, transparent 65%);
+  -webkit-mask-image:linear-gradient(to top, #000 40%, transparent);
+  mask-image:linear-gradient(to top, #000 40%, transparent);
+}
+@media (max-width:700px){ .rail::after{ display:none } }
+
+/* ---------- page between the rails ---------- */
+.page{
+  margin-left:calc(var(--rail-w) + env(safe-area-inset-left,0px));
+  margin-right:calc(var(--rail-w) + env(safe-area-inset-right,0px));
+  min-width:0;
+}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20; height:var(--bar-h);
+  background:var(--grain-strong), linear-gradient(180deg, var(--metal-2), var(--metal));
+  border-bottom:1px solid var(--metal-deep);
+  box-shadow:0 8px 22px -10px var(--shadow);
+  color:var(--paint);
+}
+.bar::after{ /* dust settled on the lower lip */
+  content:""; position:absolute; left:0; right:0; bottom:-7px; height:7px; pointer-events:none;
+  background:var(--dots-light), var(--dots-dark), linear-gradient(180deg, color-mix(in srgb, var(--rust-3) 55%, transparent), transparent);
+  -webkit-mask-image:linear-gradient(to bottom, #000, transparent);
+  mask-image:linear-gradient(to bottom, #000, transparent);
+}
+.bar-in{
+  height:100%; display:flex; align-items:center; gap:clamp(12px, 2.4vw, 28px); min-width:0;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.name{ font-weight:500; color:var(--paint); white-space:nowrap }
+.status{ display:flex; align-items:center; gap:8px; color:var(--paint-2); white-space:nowrap }
+.led{
+  width:9px; height:9px; border-radius:50%; background:var(--amber); flex:none;
+  box-shadow:0 0 0 2px var(--metal-deep), 0 0 10px 2px color-mix(in srgb, var(--amber) 70%, transparent);
+  animation:blink 4.6s steps(1,end) infinite;
+}
+@keyframes blink{ 0%,10%{ opacity:1 } 11%,100%{ opacity:.14; box-shadow:0 0 0 2px var(--metal-deep) } }
+.read{ display:flex; align-items:center; gap:8px; color:var(--paint-2); white-space:nowrap }
+.gauge{ width:clamp(56px, 10vw, 110px); height:6px; background:var(--metal-deep); border:1px solid rgba(255,255,255,.08); border-radius:1px; overflow:hidden; flex:none }
+.gauge i{ display:block; height:100%; width:0; background:var(--amber); transition:width .2s linear }
+#pct{ min-width:3.2em; font-variant-numeric:tabular-nums; color:var(--paint); text-align:right }
+.btn-theme{
+  margin-left:auto; font:inherit; letter-spacing:inherit; text-transform:inherit; color:var(--paint); white-space:nowrap;
+  background:rgba(0,0,0,.4); background:color-mix(in srgb, var(--metal-deep) 70%, transparent);
+  border:1px solid color-mix(in srgb, var(--paint) 22%, transparent);
+  padding:7px 11px; border-radius:2px; cursor:pointer;
+}
+.btn-theme b{ font-weight:500; color:var(--amber) }
+.btn-theme:hover{ border-color:var(--amber) }
+@media (max-width:560px){ .name, .status .k, .read .k{ display:none } }
+
+/* ---------- hero ---------- */
+.hero{ position:relative; background:var(--metal); overflow:hidden }
+.hero img{ display:block; width:100%; max-width:100%; aspect-ratio:16/9; max-height:72vh; object-fit:cover; object-position:50% 40% }
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:inset 0 0 120px 10px rgba(0,0,0,.45);
+  background:linear-gradient(to bottom, transparent 78%, color-mix(in srgb, var(--metal) 75%, transparent));
+}
+
+/* ---------- nameplate ---------- */
+.plate{
+  position:relative; background:var(--grain-soft), var(--paint); color:var(--ink);
+  border-top:4px solid var(--metal); border-bottom:4px solid var(--metal);
+  box-shadow:0 14px 30px -14px var(--shadow);
+}
+.plate::before,.plate::after,.slate::before,.slate::after{ /* chipped edges: rust shows through */
+  content:""; position:absolute; left:0; right:0; height:18px; pointer-events:none; z-index:1;
+  background:var(--grain-strong), var(--rust-3);
+  -webkit-mask-image:var(--blotch), linear-gradient(to bottom, #000 25%, transparent);
+  -webkit-mask-size:240px 240px, 100% 100%; -webkit-mask-composite:source-in;
+  mask-image:var(--blotch), linear-gradient(to bottom, #000 25%, transparent);
+  mask-size:240px 240px, 100% 100%; mask-composite:intersect;
+}
+.plate::before,.slate::before{ top:0 }
+.plate::after,.slate::after{
+  bottom:0;
+  -webkit-mask-image:var(--blotch), linear-gradient(to top, #000 25%, transparent);
+  mask-image:var(--blotch), linear-gradient(to top, #000 25%, transparent);
+}
+.plate-in{
+  position:relative; z-index:2; max-width:1040px; margin:0 auto; min-width:0;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:30px 34px;
+  display:grid; grid-template-columns:1fr auto; gap:18px 44px; align-items:end;
+}
+.eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--rust-2); margin:0 0 8px }
+.book{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(2.8rem, 9vw, 7rem); line-height:.9; letter-spacing:.03em;
+  margin:0; text-transform:uppercase; color:var(--ink); overflow-wrap:anywhere;
+  -webkit-mask-image:var(--chips-fine); -webkit-mask-size:160px 160px;
+  mask-image:var(--chips-fine); mask-size:160px 160px;
+}
+.spec{ margin:0; font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-2); border-left:2px solid var(--line); padding-left:16px; min-width:0 }
+.spec .cap{ font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--rust-2); margin:0 0 10px }
+.spec dl{ margin:0; display:grid; gap:6px }
+.spec dl div{ display:flex; justify-content:space-between; gap:22px }
+.spec dt{ margin:0; text-transform:uppercase; letter-spacing:.14em; font-size:10px; color:var(--ink-3); align-self:center }
+.spec dd{ margin:0; font-variant-numeric:tabular-nums; color:var(--ink); font-weight:500; white-space:nowrap }
+@media (max-width:700px){ .plate-in{ grid-template-columns:1fr; gap:22px } .spec{ border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:14px } }
+
+/* ---------- reading slate ---------- */
+.slate-wrap{
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:44px 28px;
+}
+.slate{
+  position:relative; max-width:760px; margin:0 auto; overflow:hidden;
+  background:var(--grain-soft), var(--slate); color:var(--ink);
+  border:1px solid var(--metal-deep); border-radius:4px;
+  box-shadow:0 30px 50px -24px var(--shadow), inset 0 0 0 1px color-mix(in srgb, var(--paint) 50%, transparent);
+  padding:clamp(28px, 6vw, 72px); padding-top:clamp(40px, 7vw, 84px);
+}
+.screw{
+  position:absolute; width:16px; height:16px; border-radius:50%; z-index:3;
+  background:radial-gradient(circle at 35% 35%, var(--metal-hi), var(--metal-2) 55%, var(--metal-deep));
+  box-shadow:0 1px 2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(0,0,0,.4);
+}
+.screw::before{ content:""; position:absolute; left:3px; right:3px; top:50%; height:2px; margin-top:-1px; background:var(--metal-deep); transform:rotate(var(--r)) }
+.screw.tl{ top:12px; left:12px; --r:-25deg } .screw.tr{ top:12px; right:12px; --r:40deg }
+.screw.bl{ bottom:12px; left:12px; --r:10deg } .screw.br{ bottom:12px; right:12px; --r:-60deg }
+.dust{ /* dust along the top edge */
+  position:absolute; left:0; right:0; top:0; height:16px; pointer-events:none; z-index:1;
+  background:var(--dots-dark), var(--dots-light), linear-gradient(180deg, color-mix(in srgb, var(--rust-3) 45%, transparent), transparent);
+  -webkit-mask-image:linear-gradient(to bottom, #000 30%, transparent);
+  mask-image:linear-gradient(to bottom, #000 30%, transparent);
+}
+.sand{ /* sand settled in the lower corners */
+  position:absolute; bottom:0; width:min(44%, 240px); height:76px; pointer-events:none; z-index:1; opacity:.9;
+  background:
+    var(--dots-dark), var(--dots-light),
+    radial-gradient(70% 90% at 12% 100%, var(--rust-3) 0 20%, transparent 70%),
+    linear-gradient(to top, var(--ground), transparent 70%);
+  -webkit-mask-image:radial-gradient(130% 140% at 10% 100%, #000 28%, transparent 68%);
+  mask-image:radial-gradient(130% 140% at 10% 100%, #000 28%, transparent 68%);
+}
+.sand-bl{ left:0 } .sand-br{ right:0; transform:scaleX(-1) }
+.ch-head,.prose,.ch-end{ position:relative; z-index:2 }
+
+.ch-head{ display:grid; gap:12px; margin:0 0 32px }
+.ch-label{ font-family:var(--font-mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--rust-2); margin:0; display:flex; align-items:center; gap:10px }
+.ch-label::before{ content:""; width:10px; height:10px; background:var(--suit); box-shadow:inset 0 0 0 1px rgba(0,0,0,.35) }
+.ch-title{ font-family:var(--font-display); font-weight:700; font-size:clamp(2.6rem, 7.5vw, 4.6rem); line-height:.95; margin:0; color:var(--ink); text-wrap:balance; letter-spacing:.01em }
+.day{
+  justify-self:start; font-family:var(--font-mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-2); border:1.5px solid var(--ink-2); border-radius:2px; padding:5px 10px 4px; margin:6px 0 0;
+  transform:rotate(-1.5deg);
+}
+.prose{ font-size:clamp(1.0625rem, 1rem + .35vw, 1.1875rem); line-height:1.68; color:var(--ink); hyphens:auto; -webkit-hyphens:auto; text-wrap:pretty }
+.prose p{ margin:0 0 .5em }
+.prose p + p{ text-indent:1.6em }
+.prose p.final{ margin-top:1.3em }
+
+.ch-end{ margin-top:52px }
+.stripe{ height:6px; background:repeating-linear-gradient(135deg, var(--suit) 0 14px, var(--paint-2) 14px 28px); opacity:.85 }
+.ch-end-row{ display:flex; justify-content:space-between; gap:12px 20px; flex-wrap:wrap; padding-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-2) }
+.ch-end-row span{ white-space:nowrap }
+
+/* ---------- colophon ---------- */
+.colophon{
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:8px 64px; text-align:center;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--paint); text-shadow:0 1px 0 rgba(0,0,0,.45);
+  display:flex; justify-content:center; gap:10px 22px; flex-wrap:wrap;
+}
+.colophon a{ color:var(--amber); text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--amber) 50%, transparent) }
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto }
+  .led{ animation:none }
+  .gauge i{ transition:none }
+}
+</style>
+</head>
+<body>
+<div class="rail rail-l" aria-hidden="true"><div class="paint"></div><div class="rivets"></div><div class="drift"></div></div>
+<div class="rail rail-r" aria-hidden="true"><div class="paint"></div><div class="rivets"></div><div class="drift"></div></div>
+
+<div class="page" id="top">
+  <header class="bar">
+    <div class="bar-in">
+      <span class="name">MOZAR Protocol</span>
+      <span class="status"><span class="led" aria-hidden="true"></span><span class="k">Stan</span></span>
+      <span class="read"><span class="k">Odczyt</span><span class="gauge" aria-hidden="true"><i id="gauge-fill"></i></span><span id="pct" aria-live="off">0%</span></span>
+      <button class="btn-theme" id="theme-btn" type="button" aria-label="Przełącz tryb dzień/zmierzch">Tryb · <b id="theme-val">Dzień</b></button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="hero.jpg" alt="Eve klęczy w czerwonym pyle obok przewróconej jednostki gąsienicowej z wygiętym ramieniem; w tle lądownik i nisko stojące słońce." decoding="async">
+  </section>
+
+  <section class="plate">
+    <div class="plate-in">
+      <div class="title-block">
+        <p class="eyebrow">Powieść · Norbert Mazur</p>
+        <h1 class="book">MOZAR Protocol</h1>
+      </div>
+      <section class="spec" aria-label="Odczyt na krawędzi wizjera">
+        <p class="cap">Odczyt na krawędzi wizjera</p>
+        <dl>
+          <div><dt>Tlen</dt><dd>4 h 11 min</dd></div>
+          <div><dt>Lądownik</dt><dd>300 kroków</dd></div>
+          <div><dt>Korpus jednostki</dt><dd>11 kroków</dd></div>
+          <div><dt>Dzień</dt><dd>0</dd></div>
+        </dl>
+      </section>
+    </div>
+  </section>
+
+  <div class="slate-wrap">
+    <article class="slate" id="rozdzial-1" lang="pl">
+      <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+      <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+      <div class="dust" aria-hidden="true"></div>
+
+      <header class="ch-head">
+        <p class="ch-label">Rozdział 1</p>
+        <h2 class="ch-title">Sto czterdzieści kroków</h2>
+        <p class="day">Dzień 0</p>
+      </header>
+
+      <div class="prose" id="prose">
+        <p>Sto czterdzieści kroków.</p>
+        <p>Sto sześćdziesiąt.</p>
+        <p>Przy stu osiemdziesięciu zatrzymała się, bo coś leżało w pyle na lewo od trasy, jakieś sto metrów w bok, i to coś nie było kamieniem.</p>
+        <p>Ruszyła w tamtą stronę.</p>
+        <p>Jednostka leżała na boku, na końcu płytkiej bruzdy, którą sama wyorała w gruncie. Gąsienice, dwa ramiona robocze, korpus długi na jedenaście jej kroków, nawet na boku wyższy od niej. Obudowa porysowana, jedno ramię wygięte pod kątem, który nie wyglądał na przewidziany przez konstruktora. Wskaźnik stanu na korpusie mrugał bardzo powoli, w rytmie, który oznaczał coś, czego Eve nie umiała nazwać, ale co rozpoznała natychmiast jako jeszcze żywe.</p>
+        <p>Podręcznik, którego nie pamiętała, mówił w takiej sytuacji jedno: najpierw zabezpiecz zasoby krytyczne. Tlen. Wodę. Schronienie.</p>
+        <p>Eve oparła się plecami o obudowę i sprawdziła odczyt na krawędzi wizjera. Cztery godziny jedenaście minut tlenu. Lądownik stał trzysta kroków stąd. W jakim jest stanie, nie wiedziała. Ile potrwa naprawa, też nie.</p>
+        <p>Była tylko jedna bezpieczna opcja.</p>
+        <p>Jednostka leżała obok, z jednym ramieniem wygiętym i wskaźnikiem stanu mrugającym coraz wolniej. O trzysta kroków bliżej.</p>
+        <p>Eve spojrzała w stronę kadłuba, potem na zatrzask obudowy.</p>
+        <p>Nie przeszło jej przez myśl, czy maszyna będzie jej potrzebna. Nie sprawdziła, czy jest bezpieczna. Koszt już policzyła, jak wszystko, odkąd się obudziła.</p>
+        <p>Klęka.</p>
+        <p>Dlaczego? Ta odpowiedź nie przyjdzie do niej jeszcze przez rok.</p>
+        <p>Zdejmuje rękawicę zewnętrzną, żeby uwolnić zatrzask obudowy.</p>
+        <p class="final">I zaczyna budować.</p>
+      </div>
+
+      <footer class="ch-end">
+        <div class="stripe" aria-hidden="true"></div>
+        <div class="ch-end-row">
+          <span>Koniec rozdziału 1</span>
+          <span class="next">Rozdział 2 · wkrótce</span>
+        </div>
+      </footer>
+
+      <div class="sand sand-bl" aria-hidden="true"></div>
+      <div class="sand sand-br" aria-hidden="true"></div>
+    </article>
+  </div>
+
+  <footer class="colophon">
+    <span>MOZAR Protocol</span>
+    <span>© 2026 Norbert Mazur</span>
+    <a href="#top">Na górę ↑</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* theme: dzień / zmierzch */
+  var root = document.documentElement, btn = document.getElementById('theme-btn'), val = document.getElementById('theme-val');
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function stored(){ try { return localStorage.getItem('mp-theme'); } catch (e) { return null; } }
+  function effective(){ var t = root.getAttribute('data-theme'); if (t === 'dark' || t === 'light') return t; return (mq && mq.matches) ? 'dark' : 'light'; }
+  function label(){ var e = effective(); val.textContent = e === 'dark' ? 'Zmierzch' : 'Dzień'; btn.setAttribute('aria-pressed', e === 'dark' ? 'true' : 'false'); }
+  var s = stored(); if (s === 'dark' || s === 'light') root.setAttribute('data-theme', s);
+  btn.addEventListener('click', function(){
+    var n = effective() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    try { localStorage.setItem('mp-theme', n); } catch (e) {}
+    label();
+  });
+  if (mq && mq.addEventListener) mq.addEventListener('change', label);
+  label();
+
+  /* reading progress through the chapter */
+  var fill = document.getElementById('gauge-fill'), pct = document.getElementById('pct'), art = document.getElementById('rozdzial-1');
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = art.getBoundingClientRect(), top = r.top + window.scrollY, h = r.height || 1;
+    var p = (window.scrollY + window.innerHeight - top) / h;
+    p = Math.max(0, Math.min(1, p));
+    var n = Math.round(p * 100);
+    fill.style.width = n + '%';
+    pct.textContent = n + '%';
+  }
+  function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  /* Polish typesetting: no single-letter words at line ends */
+  var walker = document.createTreeWalker(document.getElementById('prose'), NodeFilter.SHOW_TEXT, null);
+  var re = /(^|[\s(„"])([aAiIoOuUwWzZ])\s+(?=\S)/g, node;
+  while ((node = walker.nextNode())) {
+    var t = node.nodeValue, u = t.replace(re, '$1$2 ');
+    if (u !== t) node.nodeValue = u;
+  }
+})();
+</script>
+</body>
+</html>
